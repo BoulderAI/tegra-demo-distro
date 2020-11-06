@@ -5,7 +5,8 @@ require demo-image-common.inc
 
 IMAGE_FEATURES += "splash x11-base x11-sato hwcodecs"
 
-inherit features_check
+# Doesn't work with zeus
+#inherit features_check
 
 REQUIRED_DISTRO_FEATURES = "x11 opengl virtualization"
 

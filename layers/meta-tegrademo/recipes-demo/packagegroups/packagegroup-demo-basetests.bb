@@ -6,5 +6,4 @@ inherit packagegroup
 
 RDEPENDS_${PN} = " \
     cuda-samples \
-    gpu-burn \
 "

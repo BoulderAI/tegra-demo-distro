@@ -4,7 +4,8 @@ require demo-image-common.inc
 
 IMAGE_FEATURES += "hwcodecs"
 
-inherit features_check
+# Doesn't work with zeus
+#inherit features_check
 
 REQUIRED_DISTRO_FEATURES = "opengl"
 
