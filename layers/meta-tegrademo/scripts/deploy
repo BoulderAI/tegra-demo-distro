@@ -6,12 +6,12 @@ PROGNAME=$(basename $0)
 usage()
 {
     cat >&2 <<EOF
+Deploy a tegraflash image to a machine connected via local USB.
 Usage: $PROGNAME --machine <MACHINE> --image <IMAGE>
 Options:
     -h, --h             Print this usage message
     -m, --machine       Set the MACHINE used for this script
     -i, --image         Set the IMAGE used for this script
-Arguments:
 Examples:
 - To deploy a demo-image-base image for jetson-xavier-nx-devkit machine:
   $ $0 --machine jetson-xavier-nx-devkit  --image demo-image-base
@@ -62,7 +62,17 @@ echo "Using temp directory $tmpdir"
 pushd $tmpdir
 cp $scriptdir/../../../build/tmp/deploy/images/${MACHINE}/$deployfile .
 tar -xvf $deployfile
-sudo ./doflash.sh
+set +e
+./doflash.sh
+rc=$?
+if [ $rc -ne 0 ]; then
+    if [ ! -e /etc/udev/rules.d/??-oe4t.rules ]; then
+        echo "No rules file exists and flash failed."
+        echo "You may need to run setup-udev-rules"
+        echo "Or run this script as root"
+    fi
+fi
 popd
 echo "Removing temp directory $tmpdir"
 rm -rf $tmpdir
+exit $rc
