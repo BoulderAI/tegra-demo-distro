@@ -16,7 +16,7 @@
 	branch = dunfell
 [submodule "repos/meta-mender-community"]
 	path = repos/meta-mender-community
-	url = https://github.com/mendersoftware/meta-mender-community.git
+	url = https://github.com/BoulderAI/meta-mender-community.git
 	branch = dunfell
 [submodule "repos/meta-tegra"]
 	path = repos/meta-tegra
