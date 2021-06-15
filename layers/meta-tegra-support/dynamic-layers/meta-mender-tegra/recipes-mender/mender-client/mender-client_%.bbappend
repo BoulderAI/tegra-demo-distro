@@ -1,4 +1,5 @@
 EXTRADEPS = ""
-EXTRADEPS_tegra = "tegra-boot-tools tegra-boot-tools-nvbootctrl tegra-boot-tools-lateboot"
+EXTRADEPS_tegra = "tegra-boot-tools"
+EXTRADEPS_tegra += "${@'tegra-boot-tools-nvbootctrl tegra-boot-tools-lateboot' if d.getVar('PREFERRED_PROVIDER_virtual/bootloader').startswith('cboot') else ''}"
 EXTRADEPS_tegra210 = ""
 RDEPENDS_${PN} += "${EXTRADEPS}"
